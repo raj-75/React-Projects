@@ -1,33 +1,28 @@
 import React from "react";
+import { BrowserRouter , Route, Routes, Link } from "react-router-dom";
+import { AboutUs } from '../AboutUs';
+import { Home } from '../Home';
+import Activity1 from "../components/Activity/Activity1";
 export default function Navbar() {
     return (
       <>
-      <header>
+       <BrowserRouter>
+      <nav>
     <div className="px-3 py-2 bg-dark text-white">
       <div className="container">
         <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <a href="/" className="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
            test
-          </a>
-
+          </a>          
           <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
             <li>
-              <a href="/" className="nav-link text-secondary">
-                
-                Home
-              </a>
+            <Link to="/" className="nav-link text-white">Home</Link>
             </li>
             <li>
-              <a href="/" className="nav-link text-white">
-                
-                Dashboard
-              </a>
+            <Link to="/AboutUs" className="nav-link text-white">About Us</Link>
             </li>
             <li>
-              <a href="/" className="nav-link text-white">
-                
-                Orders
-              </a>
+            <Link to="/Activity" className="nav-link text-white">Activity</Link>
             </li>
             <li>
               <a href="/" className="nav-link text-white">
@@ -57,7 +52,14 @@ export default function Navbar() {
         </div>
       </div>
     </div>
-  </header>
+  </nav>
+ 
+  <Routes>
+    <Route exact path="/" element={<Home/>} />
+    <Route exact path="/AboutUs" element={<AboutUs/>} />
+    <Route exact path="/Activity" element={ <Activity1 condition={true} volume={10} />} />
+  </Routes>
+</BrowserRouter>
       </>
     );
   }
