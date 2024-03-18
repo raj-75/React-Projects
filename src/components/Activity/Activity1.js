@@ -12,7 +12,7 @@ function Activity1({ condition, volume }) {
         }
         return(
             <>
-            <div>This is rendered if the condition is {String(condition)}. volumn =  {volume} </div>;
+            <div>This is rendered if the condition is {String(condition)}. volumn =  {volume} </div>
 
             <div>
                 {elements.length > 0 ? elements : <div>This is rendered if the condition is {volume}.</div>}

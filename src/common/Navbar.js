@@ -3,6 +3,7 @@ import { BrowserRouter , Route, Routes, Link } from "react-router-dom";
 import { AboutUs } from '../AboutUs';
 import { Home } from '../Home';
 import Activity1 from "../components/Activity/Activity1";
+import Activity2 from "../components/Activity/Activity2";
 export default function Navbar() {
     return (
       <>
@@ -22,13 +23,10 @@ export default function Navbar() {
             <Link to="/AboutUs" className="nav-link text-white">About Us</Link>
             </li>
             <li>
-            <Link to="/Activity" className="nav-link text-white">Activity</Link>
+            <Link to="/Activity1" className="nav-link text-white">Activity1</Link>
             </li>
             <li>
-              <a href="/" className="nav-link text-white">
-                
-                Products
-              </a>
+            <Link to="/Activity2" className="nav-link text-white">Activity2</Link>
             </li>
             <li>
               <a href="/" className="nav-link text-white">
@@ -57,7 +55,8 @@ export default function Navbar() {
   <Routes>
     <Route exact path="/" element={<Home/>} />
     <Route exact path="/AboutUs" element={<AboutUs/>} />
-    <Route exact path="/Activity" element={ <Activity1 condition={true} volume={10} />} />
+    <Route exact path="/Activity1" element={ <Activity1 condition={true} volume={10} />} />
+    <Route exact path="/Activity2" element={ <Activity2 condition={true} volume={10} />} />
   </Routes>
 </BrowserRouter>
       </>
