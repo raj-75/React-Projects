@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter , Route, Routes, Link } from "react-router-dom";
 import { AboutUs } from '../AboutUs';
 import { Home } from '../Home';
 import Activity1 from "../components/Activity/Activity1";
-import Activity2 from "../components/Activity/Activity2";
+import Counter from "../components/Activity/Counter";
+import Card1 from "../components/Cards/Card1";
+import GetEployee from "../components/Activity/GetEployee";
 export default function Navbar() {
+  const[data,setData] = useState("Richa");
     return (
       <>
        <BrowserRouter>
@@ -26,13 +29,13 @@ export default function Navbar() {
             <Link to="/Activity1" className="nav-link text-white">Activity1</Link>
             </li>
             <li>
-            <Link to="/Activity2" className="nav-link text-white">Activity2</Link>
+            <Link to="/Counter" className="nav-link text-white">Counter</Link>
             </li>
             <li>
-              <a href="/" className="nav-link text-white">
-                
-                Customers
-              </a>
+            <Link to="/Card1" className="nav-link text-white">Card1</Link>
+            </li>
+            <li>
+            <Link to="/GetEployee" className="nav-link text-white">Employee</Link>
             </li>
           </ul>
         </div>
@@ -56,7 +59,9 @@ export default function Navbar() {
     <Route exact path="/" element={<Home/>} />
     <Route exact path="/AboutUs" element={<AboutUs/>} />
     <Route exact path="/Activity1" element={ <Activity1 condition={true} volume={10} />} />
-    <Route exact path="/Activity2" element={ <Activity2 condition={true} volume={10} />} />
+    <Route exact path="/Counter" element={ <Counter />} />
+    <Route exact path="/Card1" element={ <Card1 functions={[data, setData]} />} />
+    <Route exact path="/GetEployee" element={ <GetEployee />} />
   </Routes>
 </BrowserRouter>
       </>
