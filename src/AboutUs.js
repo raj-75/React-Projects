@@ -1,9 +1,58 @@
 import React from "react";
 import image2 from './images/download2.jpg';
+import { useSelector,useDispatch } from "react-redux";
+import{setProducts} from "./Redux/Slices/Products/index";
+import { useEffect,useRef } from 'react';
+import JqxGrid, { jqx } from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxgrid';
+import 'jqwidgets-scripts/jqwidgets/styles/jqx.base.css';
+import { fetchUser, updateUser } from './Redux/Slices/Users/userSlice';
 export function AboutUs() {
+  
+ 
+
+  const { id, first_name, last_name, status, error } = useSelector((state) => state.reducer.user);
+  //console.log(id, first_name, last_name, status, error);
+  const dispatch = useDispatch();
+  useEffect(() => { dispatch(fetchUser());}, [dispatch]);
+
+ //console.log(id, first_name, last_name, status, error);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    // update controls value
+    dispatch(updateUser({ [name]: value }));
+  };
+
+  const handleUpdateClick = () => {
+    // Dispatch action to update data via API
+    dispatch(updateUser({ id, first_name, last_name }));
+  };
+
     return (
       <>
-<section className="py-3 py-md-5 py-xl-8">
+
+<div>
+      {status === 'loading' && <div>Loading...</div>}
+      {status === 'failed' && <div>Error: {error}</div>}
+      <form>
+        <label>
+          ID:
+          <input type="text" name="id" value={id || ''} onChange={handleInputChange} />
+        </label>
+        <label>
+          First Name:
+          <input type="text" name="first_name" value={first_name} onChange={handleInputChange} />
+        </label>
+        <label>
+          Last Name:
+          <input type="text" name="last_name" value={last_name} onChange={handleInputChange} />
+        </label>
+        <button type="button" onClick={handleUpdateClick}>Save</button>
+      </form>
+    </div>
+
+
+{/* <section className="py-3 py-md-5 py-xl-8">
   <div className="container">
     <div className="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
       <div className="col-12 col-lg-6 col-xl-5">
@@ -48,7 +97,7 @@ export function AboutUs() {
       </div>
     </div>
   </div>
-</section>
+</section> */}
       </>
     );
   }

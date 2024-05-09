@@ -5,15 +5,19 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Header from "./common/Header";
 import Footer from "./common/Footer";
+import Store from './Redux/Store';
+import {Provider} from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Provider store={Store}>
      <div className="container">
      <Header/>     
     <App />
     <Footer/>
     </div>
+    </Provider>
   </React.StrictMode>
 );
 
